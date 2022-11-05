@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://silver-moon.co.kr:10800/HOMEPAGE
+    driver-class-name: org.mariadb.jdbc.Driver
+    user: lune6669
+    password: !Mjh882505
+  jpa:
