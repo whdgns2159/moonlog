@@ -1,7 +1,32 @@
+server:
+  port: 8090
+  servlet:
+    session:
+      timeout: 60m
 spring:
   datasource:
-    url: jdbc:mariadb://silver-moon.co.kr:10800/HOMEPAGE
+    url: jdbc:mariadb://silver-moon.co.kr:10800/
     driver-class-name: org.mariadb.jdbc.Driver
-    user: lune6669
-    password: !Mjh882505
+    username: 'lune6669'
+    password: '!Mjh882505'
   jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+  session:
+    redis:
+      namespace: "moon_log"
+    timeout: 60m
+    store-type: none
+  messages:
+    basename: messages.validate_message
+  http:
+    encoding: utf-8
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type: trace
