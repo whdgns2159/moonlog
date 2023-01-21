@@ -15,7 +15,7 @@
     <name>MoonLog</name>
     <description>MoonLog</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>19</java.version>
     </properties>
     <dependencies>
         <dependency>

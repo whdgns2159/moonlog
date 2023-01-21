@@ -16,3 +16,25 @@ spring:
         physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
     open-in-view: false
     show-sql: true
+
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+  session:
+    redis:
+      namespace: "moon_log"
+    timeout: 60m
+    store-type: none
+  messages:
+    basename: messages.validate_message
+  http:
+    encoding: utf-8
+
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type: trace

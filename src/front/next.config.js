@@ -1,14 +1,21 @@
-/** @type {import('next').NextConfig} */
-
-module.exports = (phase, {defaultConfig}) =>{
-  const rewrites = () => {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "http://localhost:8080/:path*"
-      },
-    ];
-  }
-
-  return {rewrites}
+/**
+ * @type {import('next').NextConfig}
+ */
+module.exports = {
+  compiler : {
+    styleComponents : true
+  },
+  async rewrites(){
+    if(process.env.NODE_ENV !== 'production'){
+      return [
+        {
+          destination: 'http://localhost:8090/:path',
+          source: '/api/:path',
+        }
+      ]
+    }else{
+      return []
+    }
+  },
+  reactStrictMode : true
 }
