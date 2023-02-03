@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^13.1.6",
-    "@next/font": "13.1.6",
+    "@next/font": "^13.1.6",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
@@ -24,5 +24,8 @@
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.5",
     "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^6.5.1"
   }
 }
