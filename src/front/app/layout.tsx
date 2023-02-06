@@ -2,6 +2,7 @@
 import styled, {ThemeProvider} from 'styled-components';
 import {media, MIXINS, theme} from "@/styles/theme";
 import RootStyleRegistry from "@/lib/RootStyleRegistry";
+import React from "react";
 
 /**
  * 어플리케이션 전체를 감싸는 Layout component
@@ -13,11 +14,13 @@ function AppLayout({children} : { children : React.ReactNode}) {
     `
 
     const LayoutFrame = styled.article`
-      ${MIXINS.flexBox('column', '', 'stretch')}
-        ${media.pc}{
-            width: 1200px
+        ${MIXINS.flexBox('column', '', 'stretch')}
+        width: 1200px;
+        ${media.pc} {
         }
-        ${media.tablet}
+        ${media.tablet}{
+            width: 100%
+        }
         ${media.mobile}
     `;
 

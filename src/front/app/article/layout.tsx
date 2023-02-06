@@ -8,15 +8,10 @@ export default function ArticleFrameLayout({children} : { children : React.React
     const LayoutHeader = styled.header`
         ${MIXINS.flexBox('row', 'center', 'space-between')}
         background-color : #777777;
-        ${media.pc}{
-            height: 50px;
-        };
+        height: 50px;
         ${media.tablet}{
-          height: 80px;
-        };
-        ${media.mobile}{
-          height: 80px;
-        };
+            height: 80px;
+        }
     `
     const LayoutMain = styled.section`
         ${MIXINS.flexBox()}

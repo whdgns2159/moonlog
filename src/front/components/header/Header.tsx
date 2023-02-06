@@ -16,7 +16,6 @@ const Header = () => {
               여기는 헤더입니다.
           </Logo>
           <Menu>
-              {/*<Image src={LoginImage} alt={"로그인"} width={1000} height={1000}/>*/}
               <LoginImage height={'1rem'} />
           </Menu>
       </>

@@ -1,5 +1,8 @@
 import {DefaultTheme} from 'styled-components'
 
+/**
+ * 프로그램 전체의 CSS를 결정하는 테마
+ * */
 export const theme: DefaultTheme = {
     color: {
         purple: '#8661de',
@@ -11,7 +14,6 @@ export const theme: DefaultTheme = {
         blue: '0 3px 8px 0 #b3e2e6',
     },
 }
-
 const customMediaQuery = (maxWidth: number): string =>
     `@media (max-width: ${maxWidth}px)`
 
@@ -40,6 +42,6 @@ export const MIXINS = {
 export const media = {
     custom: customMediaQuery,
     pc: customMediaQuery(1440),
-    tablet: customMediaQuery(768),
-    mobile: customMediaQuery(576),
+    tablet: customMediaQuery(1024),
+    mobile: customMediaQuery(768),
 }

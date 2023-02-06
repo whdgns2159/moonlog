@@ -19,8 +19,11 @@ export default function ArticleFrameLayout({children} : { children : React.React
 
 
 const LayoutNav = styled.nav`
-        ${MIXINS.flexBox()}
-    `
+    ${MIXINS.flexBox('column')}
+`
 const LayoutContents = styled.section`
     
-    `
+`
+const LayoutAside = styled.aside`
+    ${MIXINS.flexBox('column')}
+`
