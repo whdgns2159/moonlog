@@ -12,9 +12,10 @@ function AppLayout({children} : { children : React.ReactNode}) {
     const LayoutFrameCentering = styled.div`
         ${MIXINS.flexBox('column')}
     `
-
+    // ${MIXINS.flexBox('column', '', 'stretch')}
     const LayoutFrame = styled.article`
-        ${MIXINS.flexBox('column', '', 'stretch')}
+        display: flex;
+        flex-flow: column wrap;
         width: 1200px;
         ${media.pc} {
         }

@@ -14,7 +14,9 @@ export default function ArticleFrameLayout({children} : { children : React.React
         }
     `
     const LayoutMain = styled.section`
-        ${MIXINS.flexBox()}
+        ${MIXINS.flexBox()}{
+          min-height: 100vh;
+        }
     `
     const LayoutFooter = styled.footer`
         ${MIXINS.flexBox()}

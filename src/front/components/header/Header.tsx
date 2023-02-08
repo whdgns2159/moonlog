@@ -1,6 +1,8 @@
 'use client'
 import styled from "styled-components";
-import LoginImage from "@/public/login.svg"
+import loginSvg from "@/public/login.svg"
+import Login from '@/app/login/page.jsx';
+import Link from "next/link";
 
 const Header = () => {
 
@@ -10,13 +12,16 @@ const Header = () => {
     const Menu = styled.div`
         padding : 0 5px;
     `
+    const LoginImage = styled(loginSvg)``
   return (
       <>
           <Logo>
               여기는 헤더입니다.
           </Logo>
           <Menu>
-              <LoginImage height={'1rem'} />
+              <Link href={"/login"}>
+                  <LoginImage height={'1rem'} />
+              </Link>
           </Menu>
       </>
   )
