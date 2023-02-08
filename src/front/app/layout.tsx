@@ -2,12 +2,18 @@
 import styled, {ThemeProvider} from 'styled-components';
 import {media, MIXINS, theme} from "@/styles/theme";
 import RootStyleRegistry from "@/lib/RootStyleRegistry";
-import React from "react";
+import React, {ReactNode} from "react";
+import {SessionProvider} from "next-auth/react";
+
+interface IProps {
+    children : ReactNode;
+    session: any;
+}
 
 /**
  * 어플리케이션 전체를 감싸는 Layout component
  * */
-function AppLayout({children} : { children : React.ReactNode}) {
+function AppLayout({children, session} : IProps) {
 
     const LayoutFrameCentering = styled.div`
         ${MIXINS.flexBox('column')}
@@ -29,6 +35,7 @@ function AppLayout({children} : { children : React.ReactNode}) {
         <html>
             <head/>
             <body>
+            <SessionProvider session={session}>
             <ThemeProvider theme={theme}>
                 <RootStyleRegistry>
                     <LayoutFrameCentering>
@@ -38,6 +45,7 @@ function AppLayout({children} : { children : React.ReactNode}) {
                     </LayoutFrameCentering>
                 </RootStyleRegistry>
             </ThemeProvider>
+            </SessionProvider>
             </body>
         </html>
     );

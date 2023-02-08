@@ -1,3 +1,5 @@
+server:
+  port: 3001
 spring:
   datasource:
     url: jdbc:mariadb://silver-moon.co.kr:10800/HOMEPAGE
