@@ -35,7 +35,10 @@ spring:
     basename: messages.validate_message
   http:
     encoding: utf-8
-
+jwt:
+  header: Authorization
+  secret: bW9vbmxvZ+ulvOywvuyVhOyjvOyLoOyXrOufrOu2hOuTpOqwkOyCrO2VqeuLiOuLpC7snbTruJTroZzqt7jripTsoJzqsIDtj6ztirjtj7TrpqzsmKTroZzsk7jsmIjsoJXsnoXri4jri6Qu7J6Y67aA7YOB65Oc66as6rKg7Iq164uI64uk7KGw6riI66eM642U6ri46rKM7ZW067O86rmM7JqU
+  token-validity-in-seconds: 86400
 logging:
   level:
     org.hibernate.sql: debug
