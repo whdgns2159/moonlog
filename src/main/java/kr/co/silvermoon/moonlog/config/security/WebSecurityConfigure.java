@@ -56,7 +56,7 @@ public class WebSecurityConfigure{
                 /** HttpServletRequest를 사용하는 요청들에 대한 접근 제한 설정*/
                 .and()
                 .authorizeRequests()
-                .antMatchers("/authenticate").permitAll()
+                .antMatchers("/auth/login").permitAll()
 
                 /**JwtSecurityConfig 적용 */
                 .and()
