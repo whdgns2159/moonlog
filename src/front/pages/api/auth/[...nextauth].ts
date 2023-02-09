@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
-                const {username, password} = credentials as any;
+                const { username, password } = credentials as any;
                 const res = await fetch("http://localhost:3001/auth/login", {
                     method: "POST",
                     headers: {
@@ -40,6 +40,9 @@ export const authOptions: NextAuthOptions = {
 
     session:{
         strategy:"jwt"
+    },
+    pages:{
+        signIn: "/login"
     }
 }
 

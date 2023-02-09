@@ -1,6 +1,8 @@
 'use client'
 import styled from "styled-components";
 import {FieldErrors, useForm} from "react-hook-form";
+import {MIXINS} from "@/styles/theme";
+import {signIn} from "next-auth/react";
 
 
 interface HookFormTypes {
@@ -14,24 +16,48 @@ function Login() {
     const onValid = (data:HookFormTypes) => {
         console.log(data);
         try{
-            //로그인 요청
+            const onSubmit = async () =>{
+                const result = await signIn("credentials",{
+                    username: data.userId,
+                    password: data.userPwd,
+                    redirect:true,
+                    callbackUrl:"/article/food"
+                })
+            }
         }catch (e){
 
         }
     };
     const onInValid = (errors:FieldErrors) => console.log(errors);
 
+
+    const Form = styled.form`
+      ${MIXINS.flexBox('column', 'flex-start')}
+    `
+
     const InputId = styled.input`
         margin: 4px 0;
+        font-size: 1.2rem;
     `
     const InputPwd = styled.input`
         margin: 4px 0;
+        font-size: 1.2rem;
+    `
+    const ButtonSubmit = styled.button`
+        width: 100%;
+    `
+
+    const SpanTitle = styled.span`
+      font-size: 1rem;
     `
     return (
-        <form onSubmit={handleSubmit(onValid, onInValid)}>
+        <Form onSubmit={handleSubmit(onValid, onInValid)}>
+            <SpanTitle>아이디</SpanTitle>
             <InputId {...register("userId", {required: {value: true, message: "id를 입력해주십시오"}})} id={"userId"} type={"text"}/>
+            <SpanTitle>비밀번호</SpanTitle>
             <InputPwd {...register("userPwd", {required: {value: true, message: "비밀번호를 입력해주십시오"}})} id={"userPwd"} type={"password"}/>
-        </form>
+            <ButtonSubmit type={"submit"}>로그인</ButtonSubmit>
+        </Form>
     )
 }
 

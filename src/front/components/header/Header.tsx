@@ -3,6 +3,7 @@ import styled from "styled-components";
 import loginSvg from "@/public/login.svg"
 import Login from '@/app/login/page.jsx';
 import Link from "next/link";
+import {useSession} from "next-auth/react";
 
 const Header = () => {
 
@@ -13,15 +14,27 @@ const Header = () => {
         padding : 0 5px;
     `
     const LoginImage = styled(loginSvg)``
+
+    const {data:session} = useSession();
   return (
       <>
           <Logo>
               여기는 헤더입니다.
           </Logo>
           <Menu>
-              <Link href={"/login"}>
-                  <LoginImage height={'1rem'} />
-              </Link>
+              {session?.user ?(
+                  <>
+                    <p>{session.user.name} 님 안녕하세요</p>
+                  </>
+              )
+                  :
+              (
+                  <>
+                      <Link href={"/login"}>
+                          <LoginImage height={'1rem'} />
+                      </Link>
+                  </>
+              )}
           </Menu>
       </>
   )
