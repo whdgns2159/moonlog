@@ -5,27 +5,24 @@ spring:
     url: jdbc:mariadb://silver-moon.co.kr:10800/HOMEPAGE
     driver-class-name: org.mariadb.jdbc.Driver
     username: lune6669
-    password: !Mjh882505
+    password: '!Mjh882505'
     hikari:
       auto-commit: false
       connection-test-query: select 1
   jpa:
-    properties:
-      hibernate:
-        format_sql: true
-        hbm2ddl.auto: update
-        implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
     open-in-view: false
     show-sql: true
-
     hibernate:
       ddl-auto: none
+      format_sql: true
+      hbm2ddl.auto: update
     properties:
       hibernate:
         show_sql: true
         format_sql: true
         use_sql_comments: true
+        implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
   session:
     redis:
       namespace: "moon_log"

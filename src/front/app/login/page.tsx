@@ -26,7 +26,7 @@ function Login() {
                 return result;
             }
         }catch (e){
-
+            console.log(e);
         }
     };
     const onInValid = (errors:FieldErrors) => console.log(errors);
@@ -44,23 +44,23 @@ function Login() {
 }
 
 const Form = styled.form`
-      ${MIXINS.flexBox('column', 'flex-start')}
-    `
+  ${MIXINS.flexBox('column', 'flex-start')}
+`
 
 const InputId = styled.input`
-        margin: 4px 0;
-        font-size: 1.2rem;
-    `
+    margin: 4px 0;
+    font-size: 1.2rem;
+`
 const InputPwd = styled.input`
-        margin: 4px 0;
-        font-size: 1.2rem;
-    `
+    margin: 4px 0;
+    font-size: 1.2rem;
+`
 const ButtonSubmit = styled.button`
-        width: 100%;
-    `
+    width: 100%;
+`
 
 const SpanTitle = styled.span`
-      font-size: 1rem;
-    `
+  font-size: 1rem;
+`
 
 export default Login;
