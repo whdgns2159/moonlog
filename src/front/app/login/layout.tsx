@@ -1,9 +1,7 @@
 'use client'
 import styled from "styled-components";
 import {media, MIXINS} from "@/styles/theme";
-
-export default function LayoutLogin ({children}: { children : React.ReactNode}){
-    const DivLoginCard = styled.div`
+const DivLoginCard = styled.div`
       padding: 2rem 4rem;
       border: 2px solid darkgray;
       ${MIXINS.flexBox('column')}
@@ -15,6 +13,8 @@ export default function LayoutLogin ({children}: { children : React.ReactNode}){
       }
       ${media.mobile}
     `
+
+export default function LayoutLogin ({children}: { children : React.ReactNode}){
     return (
         <DivLoginCard>
             {children}

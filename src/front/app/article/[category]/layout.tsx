@@ -20,7 +20,6 @@ export default function ArticleFrameLayout({children} : { children : React.React
     );
 }
 
-
 const LayoutNav = styled.nav`
     ${MIXINS.flexBox('column')}
 `

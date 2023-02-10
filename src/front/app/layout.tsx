@@ -5,33 +5,11 @@ import RootStyleRegistry from "@/lib/RootStyleRegistry";
 import React from "react";
 import {SessionProvider} from "next-auth/react";
 
-interface IProps {
-    children: React.ReactNode;
-    session: any;
-}
 
 /**
  * 어플리케이션 전체를 감싸는 Layout component
  * */
-
-export default function AppLayout({children, session} : IProps) {
-
-    const LayoutFrameCentering = styled.div`
-        ${MIXINS.flexBox('column')}
-    `
-    // ${MIXINS.flexBox('column', '', 'stretch')}
-    const LayoutFrame = styled.article`
-        display: flex;
-        flex-flow: column wrap;
-        width: 1200px;
-        ${media.pc} {
-        }
-        ${media.tablet}{
-            width: 100%
-        }
-        ${media.mobile}
-    `;
-
+export default function AppLayout({children, session} : {children: React.ReactNode, session: any}) {
     return (
         <html>
             <head/>
@@ -51,6 +29,23 @@ export default function AppLayout({children, session} : IProps) {
         </html>
     );
 };
+
+
+const LayoutFrameCentering = styled.div`
+    ${MIXINS.flexBox('column')}
+`
+// ${MIXINS.flexBox('column', '', 'stretch')}
+const LayoutFrame = styled.article`
+    display: flex;
+    flex-flow: column wrap;
+    width: 1200px;
+    ${media.pc} {
+    }
+    ${media.tablet}{
+        width: 100%
+    }
+    ${media.mobile}
+`;
 
 /**
  * use clinet 텍스트는 Client side render 방식으로 그려지는 styled-components 와 같은 라이브러리를 사용할때

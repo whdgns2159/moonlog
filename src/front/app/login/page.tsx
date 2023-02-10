@@ -22,7 +22,8 @@ function Login() {
                     password: data.userPwd,
                     redirect:true,
                     callbackUrl:"/article/food"
-                })
+                });
+                return result;
             }
         }catch (e){
 
@@ -31,25 +32,6 @@ function Login() {
     const onInValid = (errors:FieldErrors) => console.log(errors);
 
 
-    const Form = styled.form`
-      ${MIXINS.flexBox('column', 'flex-start')}
-    `
-
-    const InputId = styled.input`
-        margin: 4px 0;
-        font-size: 1.2rem;
-    `
-    const InputPwd = styled.input`
-        margin: 4px 0;
-        font-size: 1.2rem;
-    `
-    const ButtonSubmit = styled.button`
-        width: 100%;
-    `
-
-    const SpanTitle = styled.span`
-      font-size: 1rem;
-    `
     return (
         <Form onSubmit={handleSubmit(onValid, onInValid)}>
             <SpanTitle>아이디</SpanTitle>
@@ -60,5 +42,25 @@ function Login() {
         </Form>
     )
 }
+
+const Form = styled.form`
+      ${MIXINS.flexBox('column', 'flex-start')}
+    `
+
+const InputId = styled.input`
+        margin: 4px 0;
+        font-size: 1.2rem;
+    `
+const InputPwd = styled.input`
+        margin: 4px 0;
+        font-size: 1.2rem;
+    `
+const ButtonSubmit = styled.button`
+        width: 100%;
+    `
+
+const SpanTitle = styled.span`
+      font-size: 1rem;
+    `
 
 export default Login;
