@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import {FieldErrors, useForm} from "react-hook-form";
 import {MIXINS} from "@/styles/theme";
+import React from "react";
 import {signIn} from "next-auth/react";
 
 
@@ -13,18 +14,11 @@ interface HookFormTypes {
 function Login() {
     //register를 사용하면 validation으로 값을 입력못하게 막을 수 있다.
     const {handleSubmit, register}  = useForm<HookFormTypes>();
-    const onValid = (data:HookFormTypes) => {
-        console.log(data);
+    const onValid = (formData:HookFormTypes, e:React.BaseSyntheticEvent) => {
+        console.log(formData);
         try{
-            const onSubmit = async () =>{
-                const result = await signIn("credentials",{
-                    username: data.userId,
-                    password: data.userPwd,
-                    redirect:true,
-                    callbackUrl:"/article/food"
-                });
-                return result;
-            }
+            e.preventDefault();
+            signIn();
         }catch (e){
             console.log(e);
         }
