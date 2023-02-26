@@ -4,17 +4,19 @@ import {media, MIXINS, theme} from "@/styles/theme";
 import RootStyleRegistry from "@/lib/RootStyleRegistry";
 import React from "react";
 import {SessionProvider} from "next-auth/react";
+import {AppProps} from "next/app";
 
 
 /**
  * 어플리케이션 전체를 감싸는 Layout component
  * */
-export default function AppLayout({children, session} : {children: React.ReactNode, session: any}) {
+export default function AppLayout({children} : {children: React.ReactNode}) {
+
     return (
         <html>
             <head/>
             <body>
-            <SessionProvider session={session}>
+            <SessionProvider>
             <ThemeProvider theme={theme}>
                 <RootStyleRegistry>
                     <LayoutFrameCentering>
