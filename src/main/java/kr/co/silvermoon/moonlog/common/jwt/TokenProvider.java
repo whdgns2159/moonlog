@@ -37,19 +37,27 @@ public class TokenProvider implements InitializingBean {
     private final long tokenValidityInMilliseconds;
     private Key key;
 
+    /**
+     * application.yaml에 등록된 설정값을 Provider에 초기화
+     * */
     public TokenProvider(@Value("${jwt.secret}") String secret,
                          @Value("${jwt.token-validity-in-seconds}") long tokenValidityInMilliseconds){
         this.secret = secret;
         this.tokenValidityInMilliseconds = tokenValidityInMilliseconds;
     }
 
+    /**
+     * 암호화코드를 HMAC_SHA 알고리즘으로 암호화 서명
+     * */
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         byte[] keyBytes = Base64.getDecoder().decode(secret);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    /**token 생성 algorithm */
+    /**
+     * token 생성
+     * */
     public String createToken(Authentication authentication){
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -60,27 +68,34 @@ public class TokenProvider implements InitializingBean {
         return Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
-                .signWith(SignatureAlgorithm.HS512, key)
+                .signWith( key, SignatureAlgorithm.HS512)
                 .setExpiration(validity)
                 .compact();
     }
 
-    /**인증 정보 조회 */
+    /**
+     * 인증 정보 조회
+     * */
     public Authentication getAuthentication(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+        // 권한목록 조회
         Collection<? extends GrantedAuthority> authorities =
                 Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toList());
+
+        //주 정보 생성
         User principal =new User(claims.getSubject(), "", authorities);
         return new UsernamePasswordAuthenticationToken(principal, token, authorities);
     }
 
-    /**token 유효성 검증 */
+    /**
+     * token 유효성 검증
+     * */
     public boolean validateToken(String token){
         try{
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);

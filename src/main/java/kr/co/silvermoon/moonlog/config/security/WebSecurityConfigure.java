@@ -27,8 +27,11 @@ public class WebSecurityConfigure{
     private final TokenProvider tokenProvider;
     private final JwtAuthenticationEntryPoint jwtAtuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+
+
     @Bean
     public PasswordEncoder passwordEncoder() {
+        // 사용자 비밀번호 암호화를 위해 BCrypt 사용
         return new BCryptPasswordEncoder();
     }
 
@@ -42,26 +45,21 @@ public class WebSecurityConfigure{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
-
-                /**401, 403 Exception 핸들링 */
+                //401, 403 Exception 핸들링
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAtuthenticationEntryPoint)
                 .accessDeniedHandler(jwtAccessDeniedHandler)
-
-                /**세션 사용하지 않음*/
+                //세션 사용하지 않음
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
-                /** HttpServletRequest를 사용하는 요청들에 대한 접근 제한 설정*/
+                //HttpServletRequest를 사용하는 요청들에 대한 접근 제한 설정
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/login").permitAll()
-
-                /**JwtSecurityConfig 적용 */
+                .antMatchers("/auth/**").permitAll()
+                //JwtSecurityConfig 적용
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider))
-
                 .and().build();
     }
 }
