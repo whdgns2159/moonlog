@@ -31,6 +31,7 @@ export const authOptions: NextAuthOptions = {
                 const user = await res.json();
 
                 if(res.ok && user){
+                    // 해당 세션값을 사용하기위해선 getSession 함수를 사용하면 된다.
                     return user;
                 }else return null;
             }

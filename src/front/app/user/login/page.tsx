@@ -1,11 +1,11 @@
 'use client'
 import styled from "styled-components";
-import {FieldErrors, useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {MIXINS} from "@/styles/theme";
-import React, {useCallback} from "react";
-import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import React from "react";
+import type {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {getCsrfToken, signIn} from "next-auth/react"
-import { yupResolver } from '@hookform/resolvers/yup';
+import {yupResolver} from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 type HookFormType = {

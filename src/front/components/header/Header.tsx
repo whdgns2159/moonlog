@@ -1,7 +1,7 @@
 'use client'
 import styled from "styled-components";
 import loginSvg from "@/public/login.svg"
-import Login from '@/app/login/page.jsx';
+import Login from '@/app/user/login/page.jsx';
 import Link from "next/link";
 import {useSession} from "next-auth/react";
 
@@ -30,7 +30,7 @@ const Header = () => {
                   :
               (
                   <>
-                      <Link href={"/login"}>
+                      <Link href={"/user/login"}>
                           <LoginImage height={'1rem'} />
                       </Link>
                   </>
