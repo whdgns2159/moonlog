@@ -39,7 +39,7 @@ function Login({ csrfToken }: InferGetServerSidePropsType<typeof getServerSidePr
     const formOptions = { resolver: yupResolver(validationSchema) };
     const {handleSubmit} = useForm<HookFormType>(formOptions);
     function onSubmit (body: HookFormType ){
-        signIn("credentials", {redirect: false , callbackUrl : "http://localhost:3000/article/", ...body})
+        signIn("credentials", {redirect: false , callbackUrl : "http://localhost:3000/article/", ...body});
         return false;
     }
 

@@ -1,3 +1,5 @@
+const { createProxyMiddleware} = require('next-http-proxy-middleware');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -10,16 +12,29 @@ const nextConfig = {
     return config
   },
   async rewrites() {
-    // 로컬에서 동작시킬경우 CORS를 처리할 웹서버가 없기때문에
-    // node.js 의 프록시설정으로 backend에 보낼 요청자체를 우회한다.
-    if(process.env.NODE_ENV !== 'production '){
-      return [
-        {
-          source: "/api/:path*",                        // api root 요청은 프록시서버로 우회
-          destination: "http://localhost:3001/:path*",  // 이쪽으로 전송
-        }
-      ]
-    }
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:3001/api/:path*',
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        destination: 'http://localhost:3001/:path*',
+        permanent: false,
+      },
+    ];
+  },
+  async middleware() {
+    return [
+      createProxyMiddleware('/api', {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      }),
+    ];
   },
   experimental: {
     appDir: true,
