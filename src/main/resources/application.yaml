@@ -1,5 +1,31 @@
 server:
-  port: 3001
+  port: 8080
+  servlet:
+    context-path: /
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 500
+    min-spare-threads: 50
+    max-connections: 5000
+    accept-count: 3000
+    max-http-header-size: 65536
+    max-swallow-size: -1
+    max-post-size: -1
+    max-file-size: -1
+    max-request-size: -1
+    accesslog:
+      enabled: true
+      directory: logs
+      prefix: localhost_access_log
+      suffix: .txt
+      file-date-format: .yyyy-MM-dd
+      rotate: true
+      pattern: "%h %l %u %t &quot;%r&quot; %s %b %D"
+      buffered: true
+      encoding: UTF-8
+      conditionIf: time-taken > 0
+      conditionUnless: response.status < 400
+      condition: request.remoteHost != '
 spring:
   datasource:
     url: jdbc:mariadb://silver-moon.co.kr:10800/HOMEPAGE
@@ -16,6 +42,7 @@ spring:
       ddl-auto: none
       format_sql: true
       hbm2ddl.auto: update
+      dialect: org.hibernate.dialect.MariaDBDialect #마리아db를 기준으로 작성함을 명시하는 방언
     properties:
       hibernate:
         show_sql: true

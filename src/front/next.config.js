@@ -15,7 +15,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:3001/api/:path*',
+        destination: 'http://localhost:8080/api/:path*',
       },
     ];
   },
@@ -23,7 +23,7 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
-        destination: 'http://localhost:3001/:path*',
+        destination: 'http://localhost:8080/:path*',
         permanent: false,
       },
     ];
@@ -31,7 +31,7 @@ const nextConfig = {
   async middleware() {
     return [
       createProxyMiddleware('/api', {
-        target: 'http://localhost:3001',
+        target: 'http://localhost:8080',
         changeOrigin: true,
       }),
     ];

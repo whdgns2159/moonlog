@@ -10,13 +10,15 @@ import {AppProps} from "next/app";
 /**
  * 어플리케이션 전체를 감싸는 Layout component
  * */
-export default function AppLayout({children} : {children: React.ReactNode}) {
+export default function AppLayout(
+    {children} : {children: React.ReactNode},
+    {pageProps}: AppProps){
 
     return (
         <html>
             <head/>
             <body>
-            <SessionProvider>
+            <SessionProvider session={pageProps.session}>
             <ThemeProvider theme={theme}>
                 <RootStyleRegistry>
                     <LayoutFrameCentering>

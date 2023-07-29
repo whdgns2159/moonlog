@@ -1,14 +1,14 @@
 "use client"
 
 import {useState} from "react";
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
 
 function SignUp(){
     const [userId, setUserId] = useState('');
     const [userPwd, setUserPwd] = useState('');
     const router = useRouter();
     async function signUp(){
-        const response = await fetch("/api/auth/signin",{
+        const response = await fetch("/api/signup",{
                 method : "POST",
                 headers : {
                     'Content-Type' : 'application/json',

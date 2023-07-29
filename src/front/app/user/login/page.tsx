@@ -16,25 +16,11 @@ type HookFormType = {
 function Login({ csrfToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     //register를 사용하면 validation으로 값을 입력못하게 막을 수 있다.
     const validationSchema = Yup.object().shape({
-        // title: Yup.string()
-        //     .required('Title is required'),
-        // firstName: Yup.string()
-        //     .required('First Name is required'),
-        // lastName: Yup.string()
-        //     .required('Last name is required'),
-        // dob: Yup.string()
-        //     .required('Date of Birth is required')
-        //     .matches(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/, 'Date of Birth must be a valid date in the format YYYY-MM-DD'),
         username: Yup.string()
             .required('id를 입력해주세요'),
         password: Yup.string()
             .min(6, '비밀번호는 6자리 이상입니다.')
             .required('비밀번호를 입력해주세요'),
-        // confirmPassword: Yup.string()
-        //     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-        //     .required('Confirm Password is required'),
-        // acceptTerms: Yup.bool()
-        //     .oneOf([true], 'Accept Ts & Cs is required')
     });
     const formOptions = { resolver: yupResolver(validationSchema) };
     const {handleSubmit} = useForm<HookFormType>(formOptions);

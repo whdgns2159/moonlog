@@ -1,7 +1,6 @@
 'use client'
 import styled from "styled-components";
 import loginSvg from "@/public/login.svg"
-import Login from '@/app/user/login/page.jsx';
 import Link from "next/link";
 import {useSession} from "next-auth/react";
 
