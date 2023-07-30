@@ -11,31 +11,31 @@ const nextConfig = {
     })
     return config
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'http://localhost:8080/api/:path*',
-      },
-    ];
-  },
-  async redirects() {
-    return [
-      {
-        source: '/:path*',
-        destination: 'http://localhost:8080/:path*',
-        permanent: false,
-      },
-    ];
-  },
-  async middleware() {
-    return [
-      createProxyMiddleware('/api', {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-      }),
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/api/:path*',
+  //       destination: 'http://localhost:8080/api/:path*',
+  //     },
+  //   ];
+  // },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/:path*',
+  //       destination: 'http://localhost:8080/:path*',
+  //       permanent: false,
+  //     },
+  //   ];
+  // },
+  // async middleware() {
+  //   return [
+  //     createProxyMiddleware('/api', {
+  //       target: 'http://localhost:8080',
+  //       changeOrigin: true,
+  //     }),
+  //   ];
+  // },
   experimental: {
     appDir: true,
   },

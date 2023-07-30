@@ -12,13 +12,14 @@ import {AppProps} from "next/app";
  * */
 export default function AppLayout(
     {children} : {children: React.ReactNode},
-    {pageProps}: AppProps){
+    // {pageProps}: AppProps
+){
 
     return (
         <html>
             <head/>
             <body>
-            <SessionProvider session={pageProps.session}>
+            <SessionProvider>
             <ThemeProvider theme={theme}>
                 <RootStyleRegistry>
                     <LayoutFrameCentering>
