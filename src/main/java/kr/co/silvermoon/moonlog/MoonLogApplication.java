@@ -1,10 +1,12 @@
 package kr.co.silvermoon.moonlog;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@AutoConfiguration
 @EnableJpaRepositories(basePackages = {"kr.co.silvermoon.moonlog"})
 public class MoonLogApplication {
 

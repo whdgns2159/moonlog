@@ -2,21 +2,14 @@ package kr.co.silvermoon.moonlog.common.response;
 
 import java.util.ArrayList;
 
-import lombok.Builder;
-import lombok.ToString;
+import lombok.*;
 
-@ToString
+@Getter
+@Setter
+@Builder
 public class ResVO {
-    private final int status;
-    private final String message;
-    private final Integer size;
-    private final ArrayList<?> items;
-
-    @Builder
-    public ResVO(int status, String message, Integer size, ArrayList<?> items) {
-        this.status = status;
-        this.message = message;
-        this.size = size;
-        this.items = items;
-    }
+    private int status;
+    private String message;
+    private Integer size;
+    private ArrayList<?> items;
 }

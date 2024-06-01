@@ -5,6 +5,7 @@ import kr.co.silvermoon.moonlog.common.jwt.JwtAuthenticationEntryPoint;
 import kr.co.silvermoon.moonlog.common.jwt.JwtSecurityConfig;
 import kr.co.silvermoon.moonlog.common.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -21,12 +22,14 @@ import org.springframework.security.web.SecurityFilterChain;
  */
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfigure{
-    private final TokenProvider tokenProvider;
-    private final JwtAuthenticationEntryPoint jwtAtuthenticationEntryPoint;
-    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+public class WebSecurityConfigure {
+    @Autowired
+    private TokenProvider tokenProvider;
+    @Autowired
+    private JwtAuthenticationEntryPoint jwtAtuthenticationEntryPoint;
+    @Autowired
+    private JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
 
     @Bean
@@ -36,7 +39,7 @@ public class WebSecurityConfigure{
     }
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(){ // favicon 정적파일 무시
+    public WebSecurityCustomizer webSecurityCustomizer() { // favicon 정적파일 무시
         return (web) -> web.ignoring()
                 .antMatchers("/favicon.ico");
     }
@@ -63,3 +66,4 @@ public class WebSecurityConfigure{
                 .and().build();
     }
 }
+    
